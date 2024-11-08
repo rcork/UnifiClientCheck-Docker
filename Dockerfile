@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libzip-dev \
+    sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions

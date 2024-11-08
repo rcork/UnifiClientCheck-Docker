@@ -24,7 +24,7 @@ if (!in_array($notificationService, ['Telegram', 'Ntfy', 'Pushover', 'Slack'])) 
 // Initialize Database, Notifier, and UniFiClient
 $database = new Database(__DIR__ . '/knownMacs.db');
 $knownMacs = $database->loadKnownMacs($envKnownMacs);
-$notifier = new Notifier(getenv('TELEGRAM_BOT_TOKEN'), getenv('TELEGRAM_CHAT_ID'), getenv('NTFY_URL'), getenv('PUSHOVER_TOKEN'), getenv('PUSHOVER_USER'), getenv('PUSHOVER_TITLE'), getenv('SLACK_WEBHOOK_URL'));
+$notifier = new Notifier(getenv('TELEGRAM_BOT_TOKEN'), getenv('TELEGRAM_CHAT_ID'), getenv('NTFY_URL'), getenv('PUSHOVER_TOKEN'), getenv('PUSHOVER_USER'), getenv('PUSHOVER_TITLE'), getenv('PUSHOVER_URL'), getenv('SLACK_WEBHOOK_URL'));
 
 function createUnifiClient() {
     global $controlleruser, $controllerpassword, $controllerurl, $site_id, $controllerversion;
@@ -73,7 +73,7 @@ while (true) {
         foreach ($clients as $client) {
             $isNewDevice = !in_array($client->mac ?? $client->id, $knownMacs);
             if ($isNewDevice) {
-                echo "New device found. Sending a notification.\n";
+                echo "New device found. Sending a notification: " . $client->mac . "\n";
                 $newDeviceFound = true;
             }
 
@@ -102,7 +102,7 @@ while (true) {
                 // Update known MACs or IDs for new devices
                 if ($isNewDevice && $rememberNewDevices) {
                     $macOrId = ($teleportNotifications && isset($client->type) && $client->type == 'TELEPORT') ? $client->id : $client->mac;
-                    $database->updateKnownMacs($macOrId);
+                    $database->updateKnownMacs($macOrId, $client->name ?? 'Unknown', $client->hostname ?? 'N/A');
                     $knownMacs[] = $macOrId; // Update local cache
                 }
             }

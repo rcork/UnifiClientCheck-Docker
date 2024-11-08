@@ -19,3 +19,6 @@ Thumbs.db
 
 # Database
 /src/knownMacs.db
+
+# VS Code
+.vscode

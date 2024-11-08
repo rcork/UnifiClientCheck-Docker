@@ -14,14 +14,14 @@ class Notifier {
     private $pushOverTitle;
     private $slackWebhookUrl;
 
-    public function __construct($telegramBotToken, $telegramChatId, $ntfyUrl, $pushOverToken, $pushOverUser, $pushOverTitle, $slackWebhookUrl) {
+    public function __construct($telegramBotToken, $telegramChatId, $ntfyUrl, $pushOverToken, $pushOverUser, $pushOverTitle, $pushOverURL, $slackWebhookUrl) {
         $this->telegramBotToken = $telegramBotToken;
         $this->telegramChatId = $telegramChatId;
         $this->ntfyUrl = $ntfyUrl;
         $this->pushOverToken = $pushOverToken;
         $this->pushOverUser = $pushOverUser;
         $this->pushOverTitle = $pushOverTitle;
-        $this->pushOverUrl = "https://api.pushover.net/1/messages.json";
+        $this->pushOverUrl = $pushOverURL;
         $this->slackWebhookUrl = $slackWebhookUrl;
     }
 
