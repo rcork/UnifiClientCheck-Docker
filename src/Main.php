@@ -93,9 +93,9 @@ while (true) {
                         $message = "";
                     }
                     $message .= "Device Name: " . ($client->name ?? 'Unknown') . "\n";
-                    $message .= "IP Address: `" . ($client->ip ?? 'Unassigned') . "`\n";
+                    $message .= "IP Address: " . ($client->ip ?? 'Unassigned') . "\n";
                     $message .= "Hostname: " . ($client->hostname ?? 'N/A') . "\n";
-                    $message .= "MAC Address: `" . $client->mac . "`\n";
+                    $message .= "MAC Address: " . $client->mac . "\n";
                     $message .= "Connection Type: " . ($client->is_wired ? "Wired" : "Wireless") . "\n";
                     $message .= "Network: " . ($client->{$networkProperty} ?? 'N/A');
                 }
