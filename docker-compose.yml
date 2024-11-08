@@ -3,7 +3,7 @@ version: '3'
 services:
   unifi-client-alerts:
     container_name: unificlientalerts
-    image: corknation/unificlientalerts:latest
+    image: rcork/unificlientalerts:latest
     restart: unless-stopped
     environment:
       # UniFi Controller settings
