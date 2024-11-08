@@ -31,7 +31,7 @@ class Database {
         $stmt = $this->pdo->prepare("INSERT OR IGNORE INTO known_macs (mac_address, client_name, host_name) VALUES (?, ?, ?)");
         $stmt->execute([$mac, $client_name, $host_name]);
         // update events
-        $stmt = $this->pdo->prepare("INSERT INTO events (date1, event, mac_address, client_name, host_name) VALUES (datetime('now','localtime'), 'add', ?, ?, ?)");
+        $stmt = $this->pdo->prepare("INSERT INTO events (date1, event, mac_address, client_name, host_name) VALUES (datetime('now','localtime'), 'added', ?, ?, ?)");
         $stmt->execute([$mac, $client_name, $host_name]);
     }
 
@@ -52,7 +52,7 @@ class Database {
                         $stmt = $this->pdo->prepare("DELETE FROM known_macs WHERE mac_address = :mac");
                         $stmt->execute(['mac' => $row['mac_address']]);
                         // update events
-                        $stmt = $this->pdo->prepare("INSERT INTO events (date1, event, mac_address, client_name, host_name) VALUES (datetime('now','localtime'), 'remove', ?, ?, ?)");
+                        $stmt = $this->pdo->prepare("INSERT INTO events (date1, event, mac_address, client_name, host_name) VALUES (datetime('now','localtime'), 'removed', ?, ?, ?)");
                         $stmt->execute([$row['mac_address'], $row['client_name'], $row['host_name']]);
                     }
                 }

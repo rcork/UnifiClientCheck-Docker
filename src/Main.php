@@ -87,7 +87,11 @@ while (true) {
                 } else {
 					$networkProperty = $teleportNotifications ? 'network_name' : 'network';
                     // Format message for regular device
-                    $message = "Device seen on network:\n";
+                    if ($notificationService != 'Pushover') {
+                        $message = "Device seen on network:\n";
+                    } else {
+                        $message = "";
+                    }
                     $message .= "Device Name: " . ($client->name ?? 'Unknown') . "\n";
                     $message .= "IP Address: `" . ($client->ip ?? 'Unassigned') . "`\n";
                     $message .= "Hostname: " . ($client->hostname ?? 'N/A') . "\n";
