@@ -4,4 +4,4 @@
 .env
 .gitignore
 .dockerignore
-.DS_Store
+**.DS_Store
