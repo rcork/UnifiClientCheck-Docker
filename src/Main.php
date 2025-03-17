@@ -3,6 +3,18 @@ require_once(__DIR__ . '/Database.php');
 require_once(__DIR__ . '/Notifier.php');
 require_once(__DIR__ . '/Unifi-API-client/Client.php');
 require_once(__DIR__ . '/Unifi-API-client/config.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/CurlExtensionNotLoadedException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/CurlGeneralErrorException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/CurlTimeoutException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/EmailInvalidException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/InvalidBaseUrlException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/InvalidCurlMethodException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/InvalidSiteNameException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/JsonDecodeException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/LoginFailedException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/LoginRequiredException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/MethodDeprecatedException.php');
+require_once(__DIR__ . '/Unifi-API-client/Exceptions/NotAUnifiOsConsoleException.php');
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 // Environment configuration
@@ -22,7 +34,7 @@ if (!in_array($notificationService, ['Telegram', 'Ntfy', 'Pushover', 'Slack'])) 
 }
 
 // Initialize Database, Notifier, and UniFiClient
-$database = new Database('/data/knownMacs.db');
+$database = new Database('/opt/unficlientalerts/knownMacs.db');
 $knownMacs = $database->loadKnownMacs($envKnownMacs);
 $notifier = new Notifier(getenv('TELEGRAM_BOT_TOKEN'), getenv('TELEGRAM_CHAT_ID'), getenv('NTFY_URL'), getenv('PUSHOVER_TOKEN'), getenv('PUSHOVER_USER'), getenv('PUSHOVER_TITLE'), getenv('PUSHOVER_URL'), getenv('SLACK_WEBHOOK_URL'));
 
