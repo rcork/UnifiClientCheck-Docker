@@ -18,7 +18,7 @@ docker-compose.override.yml
 Thumbs.db
 
 # Database
-/src/knownMacs.db
+knownMacs.db
 
 # VS Code
 .vscode

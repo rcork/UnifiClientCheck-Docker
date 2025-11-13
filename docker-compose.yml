@@ -41,7 +41,20 @@ services:
       REMOVE_OLD_DEVICES: ${REMOVE_OLD_DEVICES} #Remove devices that are no longer in Unifi client list  
       REMOVE_DELAY: ${REMOVE_DELAY} # How long after client disconnects to remove from known devices
 
+      # Debug Mode
+      UNIFI_API_DEBUG_MODE: ${UNIFI_API_DEBUG_MODE} # Default to false
+
+      # Notify on Error
+      NOTIFY_ON_ERROR: ${NOTIFY_ON_ERROR} # Default to false
+
+      # Exit on Error
+      EXIT_ON_ERROR: ${EXIT_ON_ERROR} # Default to false
+
+      # Database Path. Default is /data/
+      DATABASE_PATH: ${DATABASE_PATH}
+
       # Set/Override Timezone
-      TZ: ${TZ}
+      TIMEZONE: ${TIMEZONE} # Default to America/Los_Angeles
+      
     volumes:
       - ./data:/data
